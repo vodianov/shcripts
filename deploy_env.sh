@@ -16,6 +16,12 @@ install_with_script () {
     rm install.sh
 }
 
+fixed_remote_repo () {
+    pushd $HOME_DIR/$1
+    git remote set-url origin git@$REPO_HOST:$REPO_USER/$1.git
+    popd
+}
+
 # Copy dotfiles
 cp $HOME_DIR/$DOTFILES_REPO/.zprofile $HOME
 cp -r $HOME_DIR/$DOTFILES_REPO/.config $HOME
@@ -57,4 +63,5 @@ sudo ln -sf $HOME_DIR/$SHCRIPTS_REPO/start_day.sh /usr/local/bin/start_day.sh
 #git settings
 git config --global user.name "Alexander Vodianov"
 git config --global user.email "alexander.vodianov@proton.me"
-
+fixed_remote_repo $DOTFILES_REPO
+fixed_remote_repo $SHCRIPTS_REPO
