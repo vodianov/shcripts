@@ -59,7 +59,8 @@ rm $GITHUB_KEY.enc
 
 #add myself scripts
 sudo mkdir -p /usr/local/bin
-sudo ln -sf $HOME_DIR/$SHCRIPTS_REPO/start_day.sh /usr/local/bin/start_day.sh
+sudo ln -sf $HOME_DIR/$SHCRIPTS_REPO/day_start.sh /usr/local/bin/day_start.sh
+sudo ln -sf $HOME_DIR/$SHCRIPTS_REPO/day_end.sh /usr/local/bin/day_end.sh
 
 #git settings
 git config --global user.name "Alexander Vodianov"
