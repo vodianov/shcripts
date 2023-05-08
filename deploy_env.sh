@@ -4,11 +4,9 @@
 # Date Created: 07.05.2023
 # Description: This script deploy environment on MacOS
 
-source .env
-GITHUB_CONTENT=https://raw.githubusercontent.com
+source $HOME/.env
 BREW_URL=$GITHUB_CONTENT/Homebrew/install/HEAD/install.sh 
 OH_MY_ZSH_URL=$GITHUB_CONTENT/robbyrussell/oh-my-zsh/master/tools/install.sh 
-GITHUB_KEY=~/.ssh/github
 
 install_with_script () {
     curl -fsSL $1 > install.sh
