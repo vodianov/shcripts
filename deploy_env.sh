@@ -4,6 +4,7 @@
 # Date Created: 07.05.2023
 # Description: This script deploy environment on MacOS
 
+ln -sf .env $HOME/.env
 source $HOME/.env
 BREW_URL=$GITHUB_CONTENT/Homebrew/install/HEAD/install.sh 
 OH_MY_ZSH_URL=$GITHUB_CONTENT/robbyrussell/oh-my-zsh/master/tools/install.sh 
