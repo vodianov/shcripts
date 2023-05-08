@@ -4,10 +4,9 @@
 # Date Created: 07.05.2023
 # Description: This script deploy environment on MacOS
 
-GITHUB_CONTENT=https://raw.githubusercontent.com
+source $HOME/.env
 BREW_URL=$GITHUB_CONTENT/Homebrew/install/HEAD/install.sh 
 OH_MY_ZSH_URL=$GITHUB_CONTENT/robbyrussell/oh-my-zsh/master/tools/install.sh 
-GITHUB_KEY=~/.ssh/github
 
 install_with_script () {
     curl -fsSL $1 > install.sh
@@ -58,7 +57,8 @@ rm $GITHUB_KEY.enc
 
 #add myself scripts
 sudo mkdir -p /usr/local/bin
-sudo ln -sf $HOME_DIR/$SHCRIPTS_REPO/start_day.sh /usr/local/bin/start_day.sh
+sudo ln -sf $HOME_DIR/$SHCRIPTS_REPO/day_start.sh /usr/local/bin/day_start.sh
+sudo ln -sf $HOME_DIR/$SHCRIPTS_REPO/day_end.sh /usr/local/bin/day_end.sh
 
 #git settings
 git config --global user.name "Alexander Vodianov"
