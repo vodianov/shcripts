@@ -2,9 +2,12 @@
 
 # Author: Alexander Vodianov <alexander.vodianov@proton.me>
 # Date Created: 07.05.2023
+# Date Changed: 04.07.2023
 # Description: This script deploy environment on MacOS
 
-ln -sf .env $HOME/.env
+source $HOME/.tmp
+
+ln -sf $(pwd)/.env $HOME/.env
 source $HOME/.env
 BREW_URL=$GITHUB_CONTENT/Homebrew/install/HEAD/install.sh 
 OH_MY_ZSH_URL=$GITHUB_CONTENT/robbyrussell/oh-my-zsh/master/tools/install.sh 
@@ -58,7 +61,7 @@ rm $GITHUB_KEY.enc
 
 #add myself scripts
 sudo mkdir -p /usr/local/bin
-sudo ln -sf $HOME_DIR/$SHCRIPTS_REPO/day_start.sh /usr/local/bin/day_start.sh
+sudo ln -sf $HOME_DIR/$SHCRIPTS_REPO/day_start_macos.sh /usr/local/bin/day_start.sh
 sudo ln -sf $HOME_DIR/$SHCRIPTS_REPO/day_end.sh /usr/local/bin/day_end.sh
 
 #git settings
