@@ -5,8 +5,8 @@ source $HOME/.env
 Directories="Downloads Documents Desktop"
 
 #Check home dir
-for repo in $(find $HOME_DIR -type d -depth 1); do
-    if [[ ! $(find $repo -type d -name '.git' -depth 1) ]]; then
+for repo in $(find $HOME_DIR -maxdepth 1 -mindepth 1 -type d); do
+    if [[ ! $(find $repo -maxdepth 1 -mindepth 1 -type d -name '.git') ]]; then
 	echo "There is $repo not repository"
     else
 	cd $repo
@@ -15,13 +15,13 @@ for repo in $(find $HOME_DIR -type d -depth 1); do
 	fi
     fi
 done
-for file in $(find $HOME_DIR -type f -depth 1); do
+for file in $(find $HOME_DIR -maxdepth 1 -mindepth 1 -type f); do
     echo "There $file is unknown file in directory"
 done
 
 #Check that directories is empty
 for dir in $Directories; do
-    for file in $(find $HOME/$dir -depth 1); do
+    for file in $(find $HOME/$dir -maxdepth 1 -mindepth 1); do
 	if [[ $file != $HOME_DIR \
 	   && $file != $WORK_DIR \
 	   && $file != "$HOME/$dir/.localized" ]]; then
