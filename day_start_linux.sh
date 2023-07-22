@@ -5,5 +5,5 @@
 # Description: Prepare environment on new day for linux
 
 sudo apt update && \
-sudo apt upgrade && \
+sudo apt upgrade -y && \
 snap refresh
