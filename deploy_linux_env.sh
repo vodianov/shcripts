@@ -2,7 +2,7 @@
 
 # Author: Alexander Vodianov <alexander.vodianov@proton.me>
 # Date Created: 04.07.2023
-# Date Changed: 26.07.2023
+# Date Changed: 29.07.2023
 # Description: This script deploy environment on Linux
 
 ln -sf $(pwd)/.env $HOME/.env
