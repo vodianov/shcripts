@@ -2,7 +2,7 @@
 
 # Author: Alexander Vodianov <alexander.vodianov@proton.me>
 # Date Created: 04.07.2023
-# Date Changed: 17.07.2023
+# Date Changed: 29.07.2023
 # Description: This script deploy environment on Linux
 
 ln -sf $(pwd)/.env $HOME/.env
@@ -24,7 +24,7 @@ fixed_remote_repo () {
 }
 
 # Copy dotfiles
-cp $HOME_DIR/$DOTFILES_REPO/.zprofile $HOME
+cp $HOME_DIR/$DOTFILES_REPO/linux/.zprofile $HOME
 cp -r $HOME_DIR/$DOTFILES_REPO/.config $HOME
 cp -r $HOME_DIR/$DOTFILES_REPO/.ssh $HOME
 
@@ -36,6 +36,7 @@ echo "INFO: install snap apps"
 sudo snap install nvim --classic > /dev/null 
 sudo snap install telegram-desktop > /dev/null
 sudo snap install bitwarden > /dev/null
+sudo snap install chromium
 sudo snap alias nvim vim
 
 ##install oh_my_zsh

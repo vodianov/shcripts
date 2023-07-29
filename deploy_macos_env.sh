@@ -26,7 +26,7 @@ fixed_remote_repo () {
 }
 
 # Copy dotfiles
-cp $HOME_DIR/$DOTFILES_REPO/.zprofile $HOME
+cp $HOME_DIR/$DOTFILES_REPO/mac/.zprofile $HOME
 cp -r $HOME_DIR/$DOTFILES_REPO/.config $HOME
 cp -r $HOME_DIR/$DOTFILES_REPO/.ssh $HOME
 
