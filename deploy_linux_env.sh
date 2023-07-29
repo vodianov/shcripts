@@ -36,6 +36,7 @@ echo "INFO: install snap apps"
 sudo snap install nvim --classic > /dev/null 
 sudo snap install telegram-desktop > /dev/null
 sudo snap install bitwarden > /dev/null
+sudo snap install chromium
 sudo snap alias nvim vim
 
 ##install oh_my_zsh
