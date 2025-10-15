@@ -1,0 +1,4 @@
+#TODO: оформить в скрипт
+mkdir ~/.gnupg
+chmod 700 ~/.gnupg
+gpg --expert --full-generate

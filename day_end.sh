@@ -24,7 +24,6 @@ for dir in $Directories; do
     for file in $(find $HOME/$dir -maxdepth 1 -mindepth 1); do
 	if [[ $file != $HOME_DIR \
 	   && $file != $WORK_DIR \
-	   && $file != "$HOME/$dir/.localized" ]]; then
 	    echo "Unkown file: $file"
 	fi
     done
