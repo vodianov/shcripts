@@ -10,7 +10,7 @@ set -e
 echo "1. Настройка интернета"
 
 echo "2. Установка пакетов"
-sudo dnf install -y git kcov make pass python3-pip shellcheck testdisk timeshift xxd
+sudo dnf install -y git gcc(for project easyTool) kcov make pass python3-pip shellcheck testdisk timeshift xxd
 
 echo "3. Установка python-telegram-bot" для проекта easyTool
 # TODO: Не качать лишние пакеты
