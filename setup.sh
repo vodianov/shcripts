@@ -60,4 +60,5 @@ docker pull docker.io/kanboard/kanboard:v1.2.48
 echo "15 настройка day/night light"
 echo "16 установка ohmybash"
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+echo -e "\nexport EDITOR=/usr/bin/vi"
 echo "Настройка завершена."
