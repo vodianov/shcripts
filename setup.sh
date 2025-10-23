@@ -8,11 +8,9 @@ set -e
 # Разбить по шагам для удобства дебага в первый раз и добавить тесты
 
 echo "1. Настройка интернета"
-# TODO: Сделать парсинг сетей и предпочтительное подключение
-nmcli device wifi connect "CYTA_KD45_2.4G-EXT"
 
 echo "2. Установка пакетов"
-sudo dnf install -y git kcov make pass python3-pip shellcheck testdisk timeshift xxd
+sudo dnf install -y git gcc(for project easyTool) kcov make pass python3-pip shellcheck testdisk timeshift xxd
 
 echo "3. Установка python-telegram-bot" для проекта easyTool
 # TODO: Не качать лишние пакеты
@@ -27,7 +25,8 @@ echo "5. Установка VeraCrypt"
 
 echo "6. Копирование gpg ключей (файлы должны быть доступны в ./keys)"
 
-echo "7. Копирование git config"
+echo "7. Копирование git config и zed config"
+#git clone ssh git@github.com/vodianov/dotfiles
 
 echo "8. Клонирование репозиториев и установка утилит"
 # Доделать для всех утилит из исходников
@@ -37,9 +36,7 @@ git clone https://github.com/user/pass-update.git ~/pass-update
 git clone https://github.com/user/pass-tail-extension.git ~/pass-tail-extension
 git clone https://github.com/user/pass-tomb.git ~/pass-tomb
 
-echo "9. Клонирование репозитория"
-git clone git@github.com:user/repo.git ~/repo
-# Установка pass tomb и копирование исходников
+echo "9. Резерв"
 
 echo "10. Синхронизация Firefox аккаунта — ручная настройка"
 
@@ -54,4 +51,8 @@ echo "12. Настройка Timeshift"
 echo "13. Настройка клавиатуры"
 # Скачать keymap, скопировать в /usr/local/bin
 # Скопировать конфиг в 50-zsa.rules /etc/udev/rules.d
+echo "14. Установка и настройка Docker" // Для проекта easy-tool
+# Инструкция по установке докер
+docker pull docker.io/kanboard/kanboard:v1.2.48
+echo "15 настройка day/night light"
 echo "Настройка завершена."
