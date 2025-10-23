@@ -58,4 +58,6 @@ echo "14. Установка и настройка Docker" // Для проек�
 # Инструкция по установке докер
 docker pull docker.io/kanboard/kanboard:v1.2.48
 echo "15 настройка day/night light"
+echo "16 установка ohmybash"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 echo "Настройка завершена."
