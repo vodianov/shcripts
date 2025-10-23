@@ -36,7 +36,10 @@ git clone https://github.com/user/pass-update.git ~/pass-update
 git clone https://github.com/user/pass-tail-extension.git ~/pass-tail-extension
 git clone https://github.com/user/pass-tomb.git ~/pass-tomb
 
-echo "9. Резерв"
+echo "9. Установка github CLI для работы в терминале"
+sudo dnf install dnf5-plugins
+sudo dnf config-manager addrepo --from-repofile=https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf install gh --repo gh-cli
 
 echo "10. Синхронизация Firefox аккаунта — ручная настройка"
 
