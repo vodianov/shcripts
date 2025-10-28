@@ -57,6 +57,7 @@ echo "13. Настройка клавиатуры"
 echo "14. Установка и настройка Docker" // Для проекта easy-tool
 # Инструкция по установке докер
 docker pull docker.io/kanboard/kanboard:v1.2.48
+# Установка плагина https://www.wilflingseder.work/kanboard-ticket-number-plugin/
 echo "15 настройка day/night light"
 echo "16 установка ohmybash"
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
