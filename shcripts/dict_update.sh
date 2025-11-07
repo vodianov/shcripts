@@ -8,9 +8,9 @@ declare -A dict=(
 keys=("${!dict[@]}")
 input_file="adjective.csv"
 
-#for key in $keys; do
-#    wget -O "${key}-words.jsonl" "https://kaikki.org/$key/${dict[$key]}/words/kaikki.org-dictionary-${dict[$key]}-words.jsonl"
-#done
+for key in $keys; do
+    wget -O "${key}-words.jsonl" "https://kaikki.org/$key/${dict[$key]}/words/kaikki.org-dictionary-${dict[$key]}-words.jsonl"
+done
 
 while IFS= read -r line; do
   IFS=';' read -r part1 part2 part3 <<< "$line"
