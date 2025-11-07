@@ -1,21 +1,16 @@
 #!/usr/bin/env python3
 
 import json
-import csv
+
+# import csv
 import sys
-
-
-def escape_semicolon(value: str) -> str:
-    if not value:
-        return ""
-    return value.replace(";", r"\;")
 
 
 def export_word_from_jsonl(jsonl_file, word, pos, csv_file) -> dict:
     with open(jsonl_file, "r", encoding="utf-8") as f:
         for line in f:
             entry = json.loads(line.strip())
-            if entry.get("word") == word and entry.get("pos") == pos:
+            if entry.get("word") == word and (pos == "" or entry.get("pos") == pos):
                 return entry
 
 
@@ -118,10 +113,9 @@ def main():
     pos = sys.argv[3]
     csv_file = sys.argv[4]
 
-    # print(export_word_from_jsonl(jsonl_file, word, pos, csv_file))
     data = export_word_from_jsonl(jsonl_file, word, pos, csv_file)
     #  print(data)
-
+    print(word)
     print(get_senses(data))
 
 
