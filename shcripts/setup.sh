@@ -1,17 +1,18 @@
 #!/bin/bash
-set -e
+
+set -ex
 # TODO: Добавление русской раскладки
 # Установка brave, tomb
 # Разбить установку по необходимости (проекты, учеба, работа и т.д.)
 #  TZ=UTC gpg --no-options --keyid-format long --verify tails-amd64-7.0.img.sig tails-amd64-7.0.img проверка# сигнатур
 # Перееехать в ansible
 # Разбить по шагам для удобства дебага в первый раз и добавить тесты
+# Разбить по необходимости установку пакетов
 
 echo "1. Настройка интернета"
 
 echo "2. Установка пакетов"
-sudo dnf install -y git gcc(for project easyTool) kcov make pass python3-pip shellcheck testdisk timeshift xxd
-
+sudo dnf install -y git gcc(for project easyTool) kcov make pass python3-pip shellcheck testdisk timeshift xxd transmission
 echo "3. Установка python-telegram-bot" для проекта easyTool
 # TODO: Не качать лишние пакеты
 # Добавить файл, в котором будут записаны все зависимости
