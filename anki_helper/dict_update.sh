@@ -6,7 +6,9 @@ declare -A dict=(
 )
 
 keys=("${!dict[@]}")
-input_file="adjective.csv"
+exec_file='kaikki_jsonl_to_csv.py'
+input_file='undef_words.csv'
+output_file='new_words.csv'
 
 for key in ${keys[@]}; do
     local_file="${key}-words.jsonl"
@@ -26,14 +28,20 @@ for key in ${keys[@]}; do
     fi
 done
 
-#while IFS= read -r line; do
-#  IFS=';' read -r part1 part2 part3 <<< "$line"
-#  # Если части пустые, подставим пустые строки
-#  part1=${part1:-""}
-#  part2=${part2:-""}
-#  part3=${part3:-""}
-#
-#  # Вызываем Python-скрипт с тремя аргументами
-#python3 kaikki_jsonl_to_csv.py "${keys[1]}-words.jsonl" "$part1" "$part2" "$part3"
-#done < "$input_file"
-#
+while IFS= read -r line; do
+  IFS=';' read -r word pos translation <<< "$line"
+  # Если части пустые, подставим пустые строки
+  word=${word:-""}
+  pos=${pos:-""}
+  translation=${translation:-""}
+
+  # Вызываем Python-скрипт с тремя аргументами
+python3 \
+    $exec_file \
+    --json-file "${keys[1]}-words.jsonl" \
+    --json-file2 "${keys[0]}-words.jsonl" \
+    --word $word \
+    --pos $pos \
+    --translation $translation \
+    --csv-file $output_file
+done < $input_file

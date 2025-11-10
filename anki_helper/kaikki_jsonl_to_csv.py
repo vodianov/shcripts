@@ -25,10 +25,11 @@ def dict_to_html_table(d):
 
 examples = []
 defs = []
-translation = []
 
 
 def main():
+    translation = []
+
     parser = argparse.ArgumentParser(
         description="Convert word's fields from Kaikki dump to csv"
     )
