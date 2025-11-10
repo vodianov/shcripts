@@ -18,15 +18,12 @@ echo "3. Установка python-telegram-bot" для проекта easyTool
 # Добавить файл, в котором будут записаны все зависимости
 pip3 install --user python-telegram-bot[ext] keyring=25.6.0
 
-echo "4. Установка zed редактора"
-# Команда установки c помощью скрипта
-
 echo "5. Установка VeraCrypt"
 #TODO: Команда скачивания последней версии с проверкой PGP Signature
 
 echo "6. Копирование gpg ключей (файлы должны быть доступны в ./keys)"
 
-echo "7. Копирование git config и zed config"
+echo "7. Копирование git config"
 #git clone ssh git@github.com/vodianov/dotfiles
 
 echo "8. Клонирование репозиториев и установка утилит"
@@ -63,4 +60,6 @@ echo "15 настройка day/night light"
 echo "16 установка ohmybash"
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 echo -e "\nexport EDITOR=/usr/bin/vi"
+
+echo "копирование ssh конфига под проект"
 echo "Настройка завершена."
