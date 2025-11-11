@@ -23,12 +23,9 @@ def dict_to_html_table(d):
     return html
 
 
-examples = []
-defs = []
-
-
 def main():
-    translation = []
+    defs = list()
+    translation = list()
 
     parser = argparse.ArgumentParser(
         description="Convert word's fields from Kaikki dump to csv"
@@ -49,7 +46,7 @@ def main():
 
     args = parser.parse_args()
 
-    dict = KaikkiFetcher(args.json_file, args.word, args.pos, args.translation)
+    dict = KaikkiFetcher(args.json_file, args.word, args.pos)
     if dict.entry:
         defs = dict.get_senses()
     if args.json_file2:

@@ -1,8 +1,11 @@
 import json
 
+from typing import final
 
+
+@final
 class KaikkiFetcher:
-    def __init__(self, jsonl_file, word, pos="", translate="") -> dict:
+    def __init__(self, jsonl_file, word, pos="") -> dict:
         self.entry = {}
         with open(jsonl_file, "r", encoding="utf-8") as f:
             for line in f:
@@ -28,7 +31,7 @@ class KaikkiFetcher:
                         sent += f" / {example['english']}"
                     examples.append(sent)
             return examples
-        []
+        return []
 
     def get_gender(self) -> str:
         if self.entry:
