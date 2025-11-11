@@ -62,4 +62,9 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/mast
 echo -e "\nexport EDITOR=/usr/bin/vi"
 
 echo "копирование ssh конфига под проект"
+
+echo "install coapp for downloadhelper mozilla firefox"
+curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/install.sh | bash
+
+
 echo "Настройка завершена."
