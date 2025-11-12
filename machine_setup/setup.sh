@@ -71,5 +71,9 @@ echo "сделать и добавить установочный файл дл�
 echo "install coapp for downloadhelper mozilla firefox"
 curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/install.sh | bash
 
-
+echo "install tgt"
+sudo dnf install cargo openssl-devel libcxx libcxx-devel libcxxabi libunwind 
+sudo ln -s /usr/lib64/libunwind.so.8.1.0 /usr/lib64/libunwind.so.1
+sudo ln -s /usr/lib64/libunwind-x86_64.so.8.1.0 /usr/lib64/libunwind-x86_64.so.1
+cargo install tgt (выписать зависимости)
 echo "Настройка завершена."
