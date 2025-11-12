@@ -68,4 +68,8 @@ bash -c ./setup_env.sh
 echo "копирование ssh конфига под проект"
 echo "сделать и добавить установочный файл для anki_helper"
 
+echo "install coapp for downloadhelper mozilla firefox"
+curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/install.sh | bash
+
+
 echo "Настройка завершена."
