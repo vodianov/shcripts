@@ -66,5 +66,6 @@ echo "last. setup_env.sh"
 bash -c ./setup_env.sh
 
 echo "копирование ssh конфига под проект"
+echo "сделать и добавить установочный файл для anki_helper"
 
 echo "Настройка завершена."
