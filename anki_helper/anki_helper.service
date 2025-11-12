@@ -1,0 +1,5 @@
+[Unit]
+Description=Parse kaikki dumps and update anki dictionaries
+
+[Service]
+ExecStart=/home/avodianov/Documents/English/dict_update.sh /home/avodianov/Documents/English/new_wrods.csv

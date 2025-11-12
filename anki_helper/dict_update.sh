@@ -7,6 +7,7 @@ declare -A dict=(
 )
 
 keys=("${!dict[@]}")
+wd="$HOME/Documents/English"
 exec_file='kaikki_jsonl_to_csv.py'
 input_file='undef_words.csv'
 tmp_file='/tmp/undef_words.csv'
@@ -22,18 +23,18 @@ for key in ${keys[@]}; do
         local_ts=$(date --date="$local_date" +%s)
 
         if [[ $remote_ts > $local_ts ]]; then
-            wget -O $local_file $remote_url
+            wget -O $wd/$local_file $remote_url
             echo "updating $local_file ..."
         else
             echo "$local_file already update."
         fi
     else
-        wget -O $local_file $remote_url
+        wget -O $wd/$local_file $remote_url
         echo "updating $local_file ..."
     fi
 done
 
-cp $input_file $tmp_file
+cp $wd/$input_file $tmp_file
 
 while IFS= read -r line; do
   IFS=';' read -r word pos translation <<< "$line"
@@ -43,17 +44,16 @@ while IFS= read -r line; do
 
   echo "Adding $word ..."
   cmd="python3 \
-        $exec_file \
-        --json-file \"${keys[1]}-words.jsonl\" \
-        --json-file2 \"${keys[0]}-words.jsonl\" \
+        $wd/$exec_file \
+        --json-file \"$wd/${keys[1]}-words.jsonl\" \
+        --json-file2 \"$wd/${keys[0]}-words.jsonl\" \
         --word \"$word\" \
-        --translation \"$translation\" \
         --csv-file $output_file"
   [ -n "$pos" ] && cmd+=" --pos \"$pos\""
   [ -n "$translation" ] && cmd+=" --translation \"$translation\""
 
   eval "$cmd"
   if [ $? -eq 0 ]; then
-      sed -i "/^$word;/d" $input_file
+      sed -i "/^$word;/d" $wd/$input_file
   fi
 done < $tmp_file
