@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 # TODO: Добавление русской раскладки
 # Установка brave, tomb
 # Разбить установку по необходимости (проекты, учеба, работа и т.д.)
@@ -60,8 +60,13 @@ echo "15 настройка day/night light"
 echo "16 установка ohmybash"
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 echo -e "\nexport EDITOR=/usr/bin/vi"
+echo "17 установка flutter"
+# Расписать установку для проекта
+echo "last. setup_env.sh"
+bash -c ./setup_env.sh
 
 echo "копирование ssh конфига под проект"
+echo "сделать и добавить установочный файл для anki_helper"
 
 echo "install coapp for downloadhelper mozilla firefox"
 curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/install.sh | bash
