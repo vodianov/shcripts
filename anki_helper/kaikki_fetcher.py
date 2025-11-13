@@ -5,7 +5,7 @@ from typing import final
 
 @final
 class KaikkiFetcher:
-    def __init__(self, jsonl_file, word, pos="") -> dict:
+    def __init__(self, jsonl_file, word: str, pos="") -> dict:
         self.entry = {}
         with open(jsonl_file, "r", encoding="utf-8") as f:
             for line in f:
@@ -26,7 +26,8 @@ class KaikkiFetcher:
             examples = []
             for sense in self.entry.get("senses", []):
                 for example in sense.get("examples", []):
-                    sent = example["text"]
+                    if example.get("text"):
+                        sent = example["text"]
                     if example.get("english"):
                         sent += f" / {example['english']}"
                     examples.append(sent)
