@@ -1,7 +1,6 @@
 [Unit]
 Description=Parse kaikki dumps and update anki dictionaries
 After=network-online.target
-Wants=network-online.target
 
 [Service]
 ExecStart=/home/avodianov/Documents/English/dict_update.sh /home/avodianov/Documents/English/new_words.csv
