@@ -48,7 +48,7 @@ while IFS= read -r line; do
         --json-file \"$wd/${keys[1]}-words.jsonl\" \
         --json-file2 \"$wd/${keys[0]}-words.jsonl\" \
         --word \"$word\" \
-        --csv-file $output_file"
+        --csv-file $wd/$output_file"
   [ -n "$pos" ] && cmd+=" --pos \"$pos\""
   [ -n "$translation" ] && cmd+=" --translation \"$translation\""
 
