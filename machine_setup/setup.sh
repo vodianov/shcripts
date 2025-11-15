@@ -60,7 +60,7 @@ echo "15 настройка day/night light"
 echo "16 установка ohmybash"
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 echo -e "\nexport EDITOR=/usr/bin/vi"
-echo "17 установка flutter"
+echo "17 установка flutter в докер"/ good choice
 # Расписать установку для проекта
 echo "last. setup_env.sh"
 bash -c ./setup_env.sh
