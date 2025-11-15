@@ -76,4 +76,6 @@ sudo dnf install cargo openssl-devel libcxx libcxx-devel libcxxabi libunwind
 sudo ln -s /usr/lib64/libunwind.so.8.1.0 /usr/lib64/libunwind.so.1
 sudo ln -s /usr/lib64/libunwind-x86_64.so.8.1.0 /usr/lib64/libunwind-x86_64.so.1
 cargo install tgt (выписать зависимости)
+echo 'install neovim'
+# update alternatives vi and vim -> neovim
 echo "Настройка завершена."
