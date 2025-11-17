@@ -78,6 +78,7 @@ sudo ln -s /usr/lib64/libunwind-x86_64.so.8.1.0 /usr/lib64/libunwind-x86_64.so.1
 cargo install tgt (выписать зависимости)
 echo 'install neovim'
 # update alternatives vi and vim -> neovim
+# .config/nvim/init.vim copy from dotfiles & install plugin
 echo 'install vlc'
 echo 'kanboard.container'
 mkdir -p ~/.config/containers/systemd
