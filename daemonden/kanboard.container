@@ -1,0 +1,15 @@
+[Unit]
+Description=Kanboard container
+
+[Container]
+ContainerName=kanboard
+Image=docker.io/kanboard/kanboard:v1.2.48
+Volume=data:/var/www/app/data
+Volume=/srv/kanboard/plugins:/var/www/app/plugins
+PublishPort=8080:80
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
