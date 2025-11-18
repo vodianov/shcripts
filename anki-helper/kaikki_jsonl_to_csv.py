@@ -4,27 +4,10 @@ import argparse
 import csv
 
 from kaikki_fetcher import KaikkiFetcher
-
-
-def list_to_html_ordered(lst) -> str:
-    html = "<ol>\n"
-    for item in lst:
-        html += f"  <li>{item}</li>\n"
-    html += "</ol>"
-    return html
-
-
-def dict_to_html_table(d):
-    html = "<table border='1' cellpadding='5' cellspacing='0'>\n"
-    html += "  <tr><th>Ключ</th><th>Значение</th></tr>\n"
-    for key, value in d.items():
-        html += f"  <tr><td>{key}</td><td>{value}</td></tr>\n"
-    html += "</table>"
-    return html
-
+from html_converter import list_to_html_ordered, dict_to_html_ordered, dict_to_html_table
 
 def main():
-    defs = list()
+    defs = dict()
     translation = list()
 
     parser = argparse.ArgumentParser(
@@ -43,33 +26,37 @@ def main():
     parser.add_argument("-w", "--word", required=True, help="Required. Undefined word")
     parser.add_argument("-p", "--pos", help="Word's part of speech")
     parser.add_argument("-t", "--translation", help="Translation of word")
+    parser.add_argument("-l", "--language", help="language code of word")
 
     args = parser.parse_args()
 
-    dict = KaikkiFetcher(args.json_file, args.word, args.pos)
-    if dict.entry:
-        defs = dict.get_senses()
+    dictionary = KaikkiFetcher(args.json_file, args.word, args.pos)
+    if dictionary.entry:
+        defs = dictionary.get_definitions()
     if args.json_file2:
-        sec_dict = KaikkiFetcher(args.json_file2, args.word, args.pos)
-        if sec_dict.entry:
-            translation = sec_dict.get_senses()
+        sec_dictionary = KaikkiFetcher(args.json_file2, args.word, args.pos)
+        if sec_dictionary.entry:
+            translation = sec_dictionary.get_senses()
         elif args.translation:
+            translation.append("custom translate:")
             translation.append(args.translation)
+    if args.language:
+            translation.append(dictionary.get_translations(args.language))
 
     with open(args.csv_file, "a", newline="") as csvfile:
         writer = csv.writer(csvfile, delimiter="\t")
         writer.writerow(
             [
                 args.word,
+                dict_to_html_ordered(defs),
+                dict_to_html_table(dictionary.get_declension()),
+                list_to_html_ordered(dictionary.get_examples()),
                 list_to_html_ordered(translation),
-                list_to_html_ordered(defs),
-                list_to_html_ordered(dict.get_examples()),
-                dict.get_gender(),
-                dict.get_part_of_speech(),
-                dict.get_ipa(),
-                dict.get_audio_url(),
-                dict.get_etymology(),
-                dict_to_html_table(dict.get_declension()),
+                dictionary.get_gender(),
+                dictionary.get_part_of_speech(),
+                dictionary.get_ipa(),
+                dictionary.get_audio_url(),
+                dictionary.get_etymology(),
                 str(len(defs)),
                 str(len(translation)),
             ]

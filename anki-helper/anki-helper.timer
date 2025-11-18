@@ -6,4 +6,4 @@ OnCalendar=daily
 Persistent=true
 
 [Install]
-WantedBy=timers.target
+WantedBy=timers.target podman-user-wait-network-online.service

@@ -13,13 +13,18 @@ class KaikkiFetcher:
                 if entry.get("word") == word and (not pos or entry.get("pos") == pos):
                     self.entry = entry
 
-    def get_senses(self) -> list[str]:
+    def get_definitions(self) -> dict[str: list[str]]:
         if self.entry:
-            return [
-                "\n".join(d.get("raw_glosses", d.get("glosses", [])))
-                for d in self.entry.get("senses", [])
-            ]
-        return []
+            definitions = {}
+            for d in self.entry.get("senses", []):
+                gloss = (d.get("glosses"))
+                key = gloss[0]
+                value = gloss[1:]
+                if key not in definitions:
+                    definitions[key] = []
+                definitions[key].extend(value)
+            return definitions
+        return {}
 
     def get_examples(self) -> list[str]:
         if self.entry:
@@ -102,3 +107,30 @@ class KaikkiFetcher:
                         declensions.update({key: declensions.get(key, []) + [value]})
             return declensions
         return {}
+
+    def get_translations(self, lang_code: str) -> dict[str, list[str]]:
+        if self.entry:
+            results = {}
+            for sense in self.entry.get("senses", []):
+                glosses = sense.get("raw_glosses", sense.get("glosses", []))
+                if not glosses:
+                    continue
+                key = glosses[0]  # первая строка glosses — ключ
+                translations = [
+                    t.get("word") for t in sense.get("translations", [])
+                    if t.get("lang_code") == lang_code and t.get("word")
+                ]
+                if translations:
+                    if key not in results:
+                        results[key] = []
+                    results[key].extend(translations)
+            return results
+        return {}
+
+    def get_senses(self) -> list[str]:
+        if self.entry:
+            return [
+                "\n".join(d.get("raw_glosses", d.get("glosses", [])))
+                for d in self.entry.get("senses", [])
+            ]
+        return []
