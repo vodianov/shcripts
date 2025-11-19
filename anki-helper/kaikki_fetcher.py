@@ -5,7 +5,7 @@ from typing import final
 
 @final
 class KaikkiFetcher:
-    def __init__(self, jsonl_file, word: str, pos="") -> dict:
+    def __init__(self, jsonl_file, word: str, pos="") -> None:
         self.entry = {}
         with open(jsonl_file, "r", encoding="utf-8") as f:
             for line in f:
@@ -13,7 +13,7 @@ class KaikkiFetcher:
                 if entry.get("word") == word and (not pos or entry.get("pos") == pos):
                     self.entry = entry
 
-    def get_definitions(self) -> dict[str: list[str]]:
+    def get_definitions(self) -> dict[str, list[str]]:
         if self.entry:
             definitions = {}
             for d in self.entry.get("senses", []):

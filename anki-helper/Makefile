@@ -1,6 +1,6 @@
 BIN_DIR := $(HOME)/.local/bin
 CONFIG_DIR := $(HOME)/.config/anki_helper
-ENV_FILE := $(CONFIG_DIR)anki_helper.env
+ENV_FILE := $(CONFIG_DIR)/anki_helper.env
 PYTHON_LIB_DIR := $(HOME)/.local/lib/kaikki
 SHARE_FILES_DIR := $(HOME)/.local/share/anki_helper
 SYSTEMD_DIR :=  $(HOME)/.config/systemd/user
@@ -42,7 +42,7 @@ restart-systemd:
 
 create-env:
 	mkdir -p $(CONFIG_DIR)
-	echo "ANKI_HELPER_PYTHON_LIB_DIR=$(PYTHON_LIB_DIR)" >> $(ENV_FILE)
+	echo "ANKI_HELPER_PYTHON_LIB_DIR=$(PYTHON_LIB_DIR)" > $(ENV_FILE)
 	echo "ANKI_HELPER_SHARE_FILES_DIR=$(SHARE_FILES_DIR)" >> $(ENV_FILE)
 
 clean:

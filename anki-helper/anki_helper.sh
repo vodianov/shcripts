@@ -8,7 +8,7 @@ declare -A dict=(
 
 exec_file='$ANKI_HELPER_PYTHON_LIB_DIR/kaikki_jsonl_to_csv.py'
 input_file="$ANKI_HELPER_SHARE_FILES_DIR/undef_words.csv"
-tmp_file='/tmp/undef_words.csv'
+tmp_file=$(mktemp)
 output_file="$ANKI_HELPER_SHARE_FILES_DIR/new_words.csv"
 downloaded_files=()
 

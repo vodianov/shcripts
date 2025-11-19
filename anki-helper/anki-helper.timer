@@ -1,5 +1,5 @@
 [Unit]
-Description=Timer to run ank_helper daily
+Description=Timer to run anki_helper daily
 
 [Timer]
 OnCalendar=daily
