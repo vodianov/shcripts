@@ -6,8 +6,7 @@ SHARE_FILES_DIR := $(HOME)/.local/share/anki_helper
 SYSTEMD_DIR :=  $(HOME)/.config/systemd/user
 
 # Файлы
-SHELL_SCRIPT_TPL := dict_update.sh.tpl
-SHELL_SCRIPT := dict_update.sh
+SHELL_SCRIPT := anki_helper.sh
 SYSTEMD_SERVICE := anki-helper.service
 SYSTEMD_SERVICE_TPL := anki-helper.service.tpl
 SYSTEMD_TIMER := anki-helper.timer
@@ -20,7 +19,7 @@ all:
 
 install: $(SHELL_SCRIPT) $(SYSTEMD_SERVICE_TPL) $(SYSTEMD_TIMER) $(PYTHON_SCRIPTS)
 	# Создание файлов из шаблонов
-	sed "s|<ENV_FILE>|$(ENV_FILE)|g; s|<BIN_DIR>|$(BIN_DIR)|g; s|<SHARE_FILES_DIR>|$(SHARE_FILES_DIR)|g" $(SYSTEMD_SERVICE_TPL) > $(SYSTEMD_SERVICE)
+	sed "s|<ENV_FILE>|$(ENV_FILE)|g; s|<SHELL_SCRIPT>|$(BIN_DIR)/$(SHELL_SCRIPT)|g; s|<SHARE_FILES_DIR>|$(SHARE_FILES_DIR)|g" $(SYSTEMD_SERVICE_TPL) > $(SYSTEMD_SERVICE)
 	# Установка скрипта в bin
 	install -m 755 $(SHELL_SCRIPT) $(BIN_DIR)/$(SHELL_SCRIPT)
 	
