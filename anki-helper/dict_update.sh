@@ -6,8 +6,6 @@ declare -A dict=(
     [ruwiktionary]='Английский'
 )
 
-source . <ENV_FILE>
- 
 exec_file='kaikki_jsonl_to_csv.py'
 input_file='undef_words.csv'
 tmp_file='/tmp/undef_words.csv'
@@ -17,7 +15,7 @@ downloaded_files=()
 for key in "${!dict[@]}"; do
     IFS=',' read -ra values <<< "${dict[$key]}"
     for value in "${values[@]}";do
-        local_file="${key}-${value}-words.jsonl"
+        local_file="$ANKI_HELPER_SHARE_FILES_DIR/${key}-${value}-words.jsonl"
         downloaded_files+=("$local_file")
         remote_url="https://kaikki.org/$key/$value/words/kaikki.org-dictionary-$value-words.jsonl"
         if [ -f $local_file ]; then

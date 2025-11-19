@@ -1,4 +1,4 @@
-BINDIR := $(HOME)/.local/bin
+BIN_DIR := $(HOME)/.local/bin
 CONFIG_DIR := $(HOME)/.config/anki_helper
 ENV_FILE := $(CONFIG_DIR)anki_helper.env
 PYTHON_LIB_DIR := $(HOME)/.local/lib/kaikki
@@ -18,12 +18,11 @@ PYTHON_SCRIPTS := kaikki_fetcher.py kaikki_jsonl_to_csv.py html_converter.py
 all:
 	@echo "Use 'make install' to install files"
 
-install: $(SHELL_SCRIPT_TPL) $(SYSTEMD_SERVICE_TPL) $(SYSTEMD_TIMER) $(PYTHON_SCRIPTS)
+install: $(SHELL_SCRIPT) $(SYSTEMD_SERVICE_TPL) $(SYSTEMD_TIMER) $(PYTHON_SCRIPTS)
 	# Создание файлов из шаблонов
-	sed "s|<ENV_FILE>|$(ENV_FILE)|g" $(SHELL_SCRIPT_TPL) > $(SHELL_SCRIPT)
-	sed "s|<ENV_FILE>|$(ENV_FILE)|g" $(SYSTEMD_SERVICE_TPL) > $(SYSTEMD_SERVICE)
+	sed "s|<ENV_FILE>|$(ENV_FILE)|g; s|<BIN_DIR>|$(BIN_DIR)|g; s|<SHARE_FILES_DIR>|$(SHARE_FILES_DIR)|g" $(SYSTEMD_SERVICE_TPL) > $(SYSTEMD_SERVICE)
 	# Установка скрипта в bin
-	install -m 755 $(SHELL_SCRIPT) $(BINDIR)/$(SHELL_SCRIPT)
+	install -m 755 $(SHELL_SCRIPT) $(BIN_DIR)/$(SHELL_SCRIPT)
 	
 	# Установка systemd юнитов
 	install -m 644 $(SYSTEMD_SERVICE) $(SYSTEMD_DIR)/
@@ -44,7 +43,6 @@ restart-systemd:
 
 create-env:
 	mkdir -p $(CONFIG_DIR)
-	echo "ANKI_HELPER_BINDIR=$(BINDIR)" > $(ENV_FILE)
 	echo "ANKI_HELPER_PYTHON_LIB_DIR=$(PYTHON_LIB_DIR)" >> $(ENV_FILE)
 	echo "ANKI_HELPER_SHARE_FILES_DIR=$(SHARE_FILES_DIR)" >> $(ENV_FILE)
 
