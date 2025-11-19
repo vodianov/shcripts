@@ -1,0 +1,9 @@
+[Unit]
+Description=Handle anki-helper failures
+PartOf=anki-helper.service
+
+[Service]
+Type=oneshot
+ExecStart=/home/avodianov/.local/bin/anki_helper_notify.sh failed
+StandardOutput=journal
+StandardError=journal
