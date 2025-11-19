@@ -1,5 +1,0 @@
-[Unit]
-Description=Parse kaikki dumps and update anki dictionaries
-
-[Service]
-ExecStart=dict_update.sh /home/avodianov/Documents/AnkiCards/English/new_words.csv

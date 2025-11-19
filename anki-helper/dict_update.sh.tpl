@@ -6,8 +6,8 @@ declare -A dict=(
     [ruwiktionary]='Английский'
 )
 
-wd="$HOME/Documents/AnkiCards/English"
-py_lib="$HOME/.local/lib/kaikki"
+source . <ENV_FILE>
+ 
 exec_file='kaikki_jsonl_to_csv.py'
 input_file='undef_words.csv'
 tmp_file='/tmp/undef_words.csv'
@@ -27,19 +27,19 @@ for key in "${!dict[@]}"; do
             local_ts=$(date --date="$local_date" +%s)
 
             if (( $remote_ts > $local_ts )); then
-                wget -O $wd/$local_file $remote_url
+                wget -O $ANKI_HELPER_SHARE_FILES_DIR/$local_file $remote_url
                 echo "downloading $local_file ..."
             else
                 echo "$local_file already up to date."
             fi
         else
-            wget -O $wd/$local_file $remote_url
+            wget -O $ANKI_HELPER_SHARE_FILES_DIR/$local_file $remote_url
             echo "downloading $local_file ..."
         fi
     done
 done
 
-cp $wd/$input_file $tmp_file
+cp $ANKI_HELPER_SHARE_FILES_DIR/$input_file $tmp_file
 
 while IFS= read -r line; do
   IFS=';' read -r word pos translation <<< "$line"
@@ -47,7 +47,7 @@ while IFS= read -r line; do
   translation=${translation:-""}
 
   echo "Check $word"
-  if ! grep -q "^${word};" $wd/$output_file; then
+  if ! grep -q "^${word};" $ANKI_HELPER_SHARE_FILES_DIR/$output_file; then
       echo "Adding $word ..."
       lang=1
       if [[ $word =~ ^[[:alpha:]]+$ ]]; then
@@ -57,12 +57,12 @@ while IFS= read -r line; do
       fi
 
       cmd="python3 \
-            $py_lib/$exec_file \
-            --json-file '$wd/${downloaded_files[$lang]}' \
+            $ANKI_HELPER_PYTHON_LIB_DIR/$exec_file \
+            --json-file '$ANKI_HELPER_SHARE_FILES_DIR/${downloaded_files[$lang]}' \
             --word '$word' \
-            --csv-file $wd/$output_file"
+            --csv-file $ANKI_HELPER_SHARE_FILES_DIR/$output_file"
       if (($lang == 1)); then
-        cmd+=" --json-file2 '$wd/${downloaded_files[0]}'" 
+        cmd+=" --json-file2 '$ANKI_HELPER_SHARE_FILES_DIR/${downloaded_files[0]}'" 
         cmd+=" --language ru" 
       fi
       [ -n "$pos" ] && cmd+=" --pos '$pos'"
@@ -70,7 +70,7 @@ while IFS= read -r line; do
 
       eval "$cmd"
       if [ $? -eq 0 ]; then
-          sed -i "/^$word;/d" $wd/$input_file
+          sed -i "/^$word;/d" $ANKI_HELPER_SHARE_FILES_DIR/$input_file
       fi
   fi
 done < $tmp_file
